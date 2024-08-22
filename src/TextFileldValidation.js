@@ -1,31 +1,31 @@
 import { useState } from "react";
 function TextFieldValidation(){
-   const [name,setName]=useState("Ram");
+   const [name,setName]=useState("");
    const[buttonStatus,SetButtonStatus]=useState(true);
+const[msgstatus,setMsgStatus]=useState('typing');
 
-   function disp(e){
+    async function disp(e){
     if(e.target.value){
         SetButtonStatus(false);
-       setName(e.target.value);
+       await setName(e.target.value);
+       
     }
     else
     {
         SetButtonStatus(true);
     }
    }
-
-   function sendData(){
-    
-    setName();
-
+   async function sendData(){
+    await alert("hi,"+name);
+    setName("");   
     
     
-    }
-         
+ }
+       
 
     return(
         <>
-        <input type="text" placeholder="enter name" onChange={disp} />
+        <input type="text" value={name} placeholder="enter name" onChange={disp} />
         <button disabled={buttonStatus} onClick={sendData}>Send Data</button>
         
         
